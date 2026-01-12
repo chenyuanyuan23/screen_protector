@@ -27,27 +27,29 @@ public class SwiftScreenProtectorPlugin: NSObject, FlutterPlugin {
             }
             return
         }
-        
+
         let currentWindow = Self.activeWindow()
-        
-        if forceRecreate || (trackedWindow != nil && currentWindow !== trackedWindow) {
+
+        // 修复: 只有在窗口真正变化时才重建，避免频繁前后台切换导致黑屏
+        let windowChanged = trackedWindow != nil && currentWindow !== trackedWindow && currentWindow != nil
+        if forceRecreate && windowChanged {
             self.didBecomeActive(.dataLeakage)
             tearDownManager()
         }
-        
+
         guard screenProtectorKit == nil else { return }
         guard let window = currentWindow else {
             self.log()
             // Disable data leakage protection when no active UIWindow is available
-            self.didBecomeActive(.dataLeakage)
+            // 修复: 移除此处的 didBecomeActive 调用，避免状态混乱
             print("[screen_protector] Active UIWindow is not available.")
             return
         }
-        
+
         self.screenProtectorKit = ScreenProtectorKit(window: window)
         onMain { self.screenProtectorKit?.configurePreventionScreenshot() }
         onMain { self.addListenerIfNeeded() }
-        
+
         self.trackedWindow = window
     }
     
@@ -117,7 +119,8 @@ public class SwiftScreenProtectorPlugin: NSObject, FlutterPlugin {
     @objc func onSceneDidBecomeActive(_ notification: Notification) {
         // Protect Data Leakage - OFF && Prevent Screenshot - ON
         DispatchQueue.main.async {
-            self.initializeManagerIfNeeded(forceRecreate: true)
+            // 修复: 不再强制重建，只在必要时初始化
+            self.initializeManagerIfNeeded(forceRecreate: false)
             self.didBecomeActive(.dataLeakage)
             self.didBecomeActive(.screenshot)
         }
@@ -243,7 +246,8 @@ public class SwiftScreenProtectorPlugin: NSObject, FlutterPlugin {
         }
         
         let foregroundObserver = center.addObserver(forName: UIScene.didActivateNotification, object: nil, queue: .main) { [weak self] _ in
-            self?.initializeManagerIfNeeded(forceRecreate: true)
+            // 修复: 不再强制重建，只在必要时初始化
+            self?.initializeManagerIfNeeded(forceRecreate: false)
         }
         
         sceneObservers.append(contentsOf: [disconnectObserver, foregroundObserver])
