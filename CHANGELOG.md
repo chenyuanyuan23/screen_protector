@@ -1,3 +1,7 @@
+## 1.5.1
+
+- Refactor: replace hack-based screenshot prevention with overlay implementation
+
 ## 1.4.13
 
 - Fix: Listeners stop working after screen recording toolbar interaction

@@ -1,7 +1,24 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-class MainPage extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:screen_protector/screen_protector.dart';
+
+class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      unawaited(ScreenProtector.protectDataLeakageWithColor(Colors.orange));
+      unawaited(ScreenProtector.preventScreenshotOn());
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

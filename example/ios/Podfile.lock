@@ -5,10 +5,10 @@ PODS:
     - TOCropViewController (~> 2.8.0)
   - image_picker_ios (0.0.1):
     - Flutter
-  - screen_protector (1.4.12):
+  - screen_protector (1.5.1):
     - Flutter
-    - ScreenProtectorKit (= 1.4.5)
-  - ScreenProtectorKit (1.4.5)
+    - ScreenProtectorKit (= 1.5.1)
+  - ScreenProtectorKit (1.5.1)
   - TOCropViewController (2.8.0)
 
 DEPENDENCIES:
@@ -36,8 +36,8 @@ SPEC CHECKSUMS:
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   image_cropper: 64567491beea6cd1bc4b11948e2babb590de5826
   image_picker_ios: e0ece4aa2a75771a7de3fa735d26d90817041326
-  screen_protector: f2657b57580f0fb79281c82cb649414e859ba602
-  ScreenProtectorKit: 322ed190203835593ef4ef40be24442060d7900f
+  screen_protector: 18c6aca2dc5d2a832f6787a5318f97f03e9d3150
+  ScreenProtectorKit: 6ceb3e0808341a9bc15d175bff40dfdd4b32da71
   TOCropViewController: 797deaf39c90e6e9ddd848d88817f6b9a8a09888
 
 PODFILE CHECKSUM: cc1f88378b4bfcf93a6ce00d2c587857c6008d3b

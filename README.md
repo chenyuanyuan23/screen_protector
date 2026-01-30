@@ -4,8 +4,7 @@ Safe Data Leakage via Application Background Screenshot and Prevent Screenshot f
 
 ## Important (Breaking Change)
 
-Starting from version 1.4.10+, AppDelegate lifecycle is no longer supported.
-Please migrate your iOS project to SceneDelegate.
+Versions 1.4.4 through 1.4.13 may cause crashes on some devices. Please use version 1.4.3 or earlier, or upgrade to version 1.5.1 or later.
 
 ## Feature
 
@@ -71,7 +70,7 @@ final isRecording = await ScreenProtector.isRecording();
 
 ### Android
 
-#### Protect Data Leakage Background Screenshot and Prevent Screenshot 
+#### Protect Data Leakage Background Screenshot and Prevent Screenshot
 
 - ON
 
@@ -142,7 +141,7 @@ class _PreventScreenshotPageState extends State<MyApp> {
     _protectDataLeakageOff();
     super.dispose();
   }
-  
+
 }
 ```
 
@@ -170,7 +169,7 @@ class _PreventScreenshotPageState extends State<MyApp> {
     _preventScreenshotOff();
     super.dispose();
   }
-  
+
 }
 ```
 
@@ -188,7 +187,7 @@ class _ProtectDataLeakagePageState extends State<MyApp> {
     _protectDataLeakageWithColor();
     super.initState();
   }
-  
+
 }
 ```
 
@@ -208,7 +207,7 @@ class _ProtectDataLeakagePageState extends State<MyApp> {
     _protectDataLeakageWithImage();
     super.initState();
   }
-  
+
 }
 ```
 
@@ -226,7 +225,7 @@ class _ProtectDataLeakagePageState extends State<MyApp> {
     _protectDataLeakageWithBlur();
     super.initState();
   }
-  
+
 }
 ```
 
@@ -235,4 +234,3 @@ class _ProtectDataLeakagePageState extends State<MyApp> {
 If you find this package helpful, please consider supporting it:
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/prongbang)
-
